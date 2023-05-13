@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <script>
+        function LoadAboutInformation(){
+            // alert("Loading");
+            //call AJAX of About.html
+            var request = new XMLHttpRequest();
+            request.open("GET","about.html");
+            request.onreadystatechange = function(){
+                //call whenever statechange
+                if(this.readyState==4 && this.status==200){
+                    //complete and successfull
+                    console.log(this.responseText);
+                    // let ob = JSON.parse(this.responseText);
+                    // console.log(ob);
+                    document.getElementById("container").innerHTML = this.responseText;
+                }
+                
+            };
+            request.send();
+
+        }
+    </script>
+</head>
+<body>
+    <h1>Welcome To Home Page</h1>
+    <h2>We Are Learning AJAX</h2>
+    <p>Lorem ipsum dolor sit amet consectetur, adipisicing elit. At reprehenderit sit maiores perferendis officia. Modi, sed. Iste dolores ea beatae quis culpa, voluptates, enim unde iure assumenda debitis, autem asperiores.</p>
+    <h1><a href="about.html">About</a></h1>
+    <button onclick="LoadAboutInformation()">Load About</button>
+    <div id="container"></div>
+    <button id="jbtn">Jquery Load</button>
+    <!-- JQuery -->
+    <script
+    src="https://code.jquery.com/jquery-3.7.0.min.js"
+    integrity="sha256-2Pmvv0kuTBOenSvLm6bvfBSSHrUJ+3A7x6P5Ebd07/g="
+    crossorigin="anonymous"></script>
+
+
+    <script>
+        $(document).ready(function(){
+            // Document is ready
+            $("#jbtn").click(function(){
+                //btn click
+                $.get("data.json",function(data){
+                    console.log("JQuery Data");
+                    console.log(data);
+                })
+            })
+
+        })
+
+    </script>
+</body>
+</html>
